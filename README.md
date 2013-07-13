@@ -1,0 +1,4 @@
+acctsoftware
+============
+
+Personal accounting software
