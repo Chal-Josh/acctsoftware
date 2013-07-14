@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @bs_category.name %>
+</p>
+
+<p>
+  <b>Debit impact:</b>
+  <%= @bs_category.debit_impact %>
+</p>
+
+<p>
+  <b>Credit impact:</b>
+  <%= @bs_category.credit_impact %>
+</p>
+
+
+<%= link_to 'Edit', edit_bs_category_path(@bs_category) %> |
+<%= link_to 'Back', bs_categories_path %>

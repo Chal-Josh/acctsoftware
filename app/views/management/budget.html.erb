@@ -1,0 +1,31 @@
+<h4>Budget</h4>
+
+<table>
+	<tr style="border-bottom: thin solid black;">	
+		<th width="250" align="left">Account</th>
+		<th>Balance</th>
+	<tr>
+	<tr height="15"></tr>	
+	<% @accounts.each do |account| %>
+		<tr>
+			<td><b><%= account.name %></b></td>
+		</tr>
+		<% account.sub_accounts.each do |sub_account| %>	
+			<tr>
+				<td><%= sub_account.name %></td>
+				<td>$ <%= sub_account.sub_account_balance(sub_account) %></td>
+			</tr>
+		<% end %>
+		<tr style="border-top: thin solid black;">
+			<td><b>Total <%= account.name %></b></td>
+			<td><b>$ <%= account.account_balance(account) %></b></td>
+		</tr>
+		<tr height="15"></tr>
+	<% end %>
+	<tr height="15"></tr>	
+	<tr style="border-top: thin solid black;border-bottom: thin solid black;">
+		<td><b>Net Income</b></td>
+		<td><b>$ <%= @bs_category.bs_category_balance(@bs_category) %></b></td>
+	</tr>
+	
+</table>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Amount:</b>
+  <%= @projection.amount %>
+</p>
+
+<p>
+  <b>Period:</b>
+  <%= @projection.period %>
+</p>
+
+<p>
+  <b>Success:</b>
+  <%= @projection.success %>
+</p>
+
+<p>
+  <b>Sub account:</b>
+  <%= @projection.sub_account_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_projection_path(@projection) %> |
+<%= link_to 'Back', projections_path %>

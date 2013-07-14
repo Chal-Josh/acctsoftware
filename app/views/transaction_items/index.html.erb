@@ -1,0 +1,31 @@
+<h1>Listing transaction_items</h1>
+
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>Debit</th>
+    <th>Sub account</th>
+    <th>Transaction</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transaction_items.each do |transaction_item| %>
+  <tr>
+    <td><%= transaction_item.amount %></td>
+    <td><%= transaction_item.debit %></td>
+    <td><%= transaction_item.sub_account_id %></td>
+    <td><%= transaction_item.transaction_id %></td>
+    <td><%= transaction_item.category_id %></td>
+    <td><%= link_to 'Show', transaction_item %></td>
+    <td><%= link_to 'Edit', edit_transaction_item_path(transaction_item) %></td>
+    <td><%= link_to 'Destroy', transaction_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transaction item', new_transaction_item_path %>

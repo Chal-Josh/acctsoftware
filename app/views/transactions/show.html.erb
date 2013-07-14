@@ -1,0 +1,22 @@
+<p>
+  <b>Memo:</b>
+  <%= @transaction.memo %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @transaction.date %>
+</p>
+<hr>
+<p>
+  <b>Debit Amount:</b>
+	<!-- push this to to the controller -->
+  $ <%= @transaction.transaction_items.where(:debit => true).sum("amount") %>
+</p>
+<p>
+  <b>Credit Amount:</b>
+  $ <%= @transaction.transaction_items.where(:debit => false).sum("amount") %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>

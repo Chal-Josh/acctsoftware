@@ -1,4 +1,18 @@
 Acctsoftware::Application.routes.draw do
+  
+  root to: 'accounts#index'
+  
+  resources :transaction_items
+  resources :transactions
+  resources :categories
+  resources :projections
+  resources :sub_accounts
+  resources :accounts
+  resources :bs_categories
+  
+  get '/management/budget'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

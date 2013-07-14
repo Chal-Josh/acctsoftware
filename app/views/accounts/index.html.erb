@@ -1,0 +1,33 @@
+<h3>Account Management</h3>
+<hr>
+
+<% @bs_categories.each do |bs_category| %>
+	<h4><%= bs_category.name %></h4>
+	<table class="table table-hover table-condensed">
+		<thead>
+			  <tr>
+			    <th width="150">Name</th>
+			    <th width="50">Current</th>
+				<th width="50">Sub-Accounts</th>
+			    <th width="100">Actions</th>
+			  </tr>
+		</thead>
+		<tbody>
+			<% bs_category.accounts.each do |account| %>
+			  <tr>
+			    <td><%= account.name %></td>
+			    <td><%= account.current %></td>
+			    <td><%= account.sub_accounts.count %></td>
+			    <td><%= link_to 'Show', account %>
+					<%= link_to 'Edit', edit_account_path(account) %>
+					<%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+	<br />
+<% end %>
+
+
+
+<%= link_to 'New Account', new_account_path %>

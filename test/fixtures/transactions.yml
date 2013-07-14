@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  memo: MyText
+  date: 2013-07-13 09:10:13
+
+two:
+  memo: MyText
+  date: 2013-07-13 09:10:13

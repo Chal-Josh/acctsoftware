@@ -1,0 +1,49 @@
+<p>
+  <b>Name:</b>
+  <%= @account.name %>
+</p>
+
+<p>
+	<b>Current:</b>
+	<% if @account.current == "true"%>
+		Currrent <%= @account.bs_category.name %>
+	<% else %>
+		Non-Currrent <%= @account.bs_category.name %>
+	<% end %>
+	
+</p>
+
+<p>
+  <b>Bs category:</b>
+  <%= @account.bs_category.name %>
+</p>
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
+<hr>
+<h4>Sub Accounts</h4>
+<table class="table table-hover table-condensed">
+	<thead>
+		  <tr>
+		    <th width="100">Name</th>
+		    <th width="100">Actions</th>
+		  </tr>
+	</thead>
+	<tbody>
+		<% @account.sub_accounts.each do |sub_account| %>
+		  <tr>
+		    <td><%= sub_account.name %></td>
+		    <td><%= link_to 'Show', sub_account %>
+				<%= link_to 'Edit', edit_sub_account_path(sub_account) %>
+				<%= link_to 'Destroy', sub_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  </tr>
+		<% end %>
+	</tbody>
+</table>
+<br />
+
+<button type="button" id="new_sub_account" class="btn btn-primary">New Sub-Account</button>
+<div class="sub_account_form">
+	<%= render :partial => '/sub_accounts/form' %>
+</div>
+
+

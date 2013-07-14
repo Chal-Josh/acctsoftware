@@ -11,5 +11,17 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.ui.slider
+//= require jquery.ui.datepicker
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require bootstrap-switch
 //= require_tree .
+
+
+
+//Needs to be moved to transaction.js
+
+$(function() {
+  $("#transaction_date").datepicker({dateFormat: 'yy-mm-dd'});
+});

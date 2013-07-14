@@ -11,16 +11,28 @@ gem 'sqlite3'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+  	gem 'sass-rails'
+	gem 'less-rails'
+	gem 'coffee-rails', '~> 3.2.1'
+	gem 'therubyracer', '~> 0.10.2'
+	gem 'uglifier', '>= 1.0.3'
+	gem 'jquery-rails'
+	gem 'jquery-ui-rails'
+    gem 'jquery-ui-bootstrap-rails'
+    gem 'jquery_mobile_rails'
+    # gem for on/off toggle https://github.com/manuelvanrijn/bootstrap-switch-rails
+    gem 'bootstrap-switch-rails'
 end
 
-gem 'jquery-rails'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+# makes variables from models available in JS
+gem 'gon'
+
+
+# authentication system
+gem 'devise'
+gem 'omniauth-linkedin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

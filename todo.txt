@@ -1,0 +1,22 @@
+Page: Monthly Budget
+	- Add links to sub-accounts to make them clickable
+	- Add date range to select a month submit button to select a specific date range 
+	- Auto update statement on date range change
+	- Add budgeted amount
+	
+
+Page: Sub-Account Show
+	- Add list of transactions
+	- Add link to transactions to show transaction
+
+Page: New-transaction
+	- Add select box for account
+	- Add ajax to make the sub-account list auto refresh based on selected Account
+	- Default one of the transaction items to Credit
+	- Add ability to add in multiple transaction items
+	- Order transaction items from debit to credut
+	- Show total of debits - credits on page with auto refresh with new amounts being entered
+	- Do not allow transaction to submit without a balanced debit - credit
+	
+Page: Balance Sheet
+	- Add a balance sheet

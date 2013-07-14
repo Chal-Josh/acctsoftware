@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @sub_account.name %>
+</p>
+
+<p>
+  <b>Account:</b>
+  <%= @sub_account.account_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sub_account_path(@sub_account) %> |
+<%= link_to 'Back', sub_accounts_path %>

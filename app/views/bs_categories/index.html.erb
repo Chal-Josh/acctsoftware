@@ -1,0 +1,30 @@
+<h1>Listing bs_categories</h1>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+		   <th>Name</th>
+		   <th>Debit impact</th>
+		   <th>Credit impact</th>
+		   <th></th>
+		   <th></th>
+		   <th></th>
+		 </tr>
+	</thead>
+	<tbody>
+		<% @bs_categories.each do |bs_category| %>
+		  <tr>
+		    <td><%= bs_category.name %></td>
+		    <td><%= bs_category.debit_impact %></td>
+		    <td><%= bs_category.credit_impact %></td>
+		    <td><%= link_to 'Show', bs_category %></td>
+		    <td><%= link_to 'Edit', edit_bs_category_path(bs_category) %></td>
+		    <td><%= link_to 'Destroy', bs_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  </tr>
+		<% end %>
+	</tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Bs category', new_bs_category_path %>

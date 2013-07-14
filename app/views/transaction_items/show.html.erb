@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Amount:</b>
+  <%= @transaction_item.amount %>
+</p>
+
+<p>
+  <b>Debit:</b>
+  <%= @transaction_item.debit %>
+</p>
+
+<p>
+  <b>Sub account:</b>
+  <%= @transaction_item.sub_account_id %>
+</p>
+
+<p>
+  <b>Transaction:</b>
+  <%= @transaction_item.transaction_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @transaction_item.category_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_transaction_item_path(@transaction_item) %> |
+<%= link_to 'Back', transaction_items_path %>
