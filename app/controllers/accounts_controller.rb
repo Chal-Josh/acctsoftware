@@ -16,6 +16,12 @@ class AccountsController < ApplicationController
   def show
     @account = Account.find(params[:id])
     @sub_account = SubAccount.new(params[:sub_account])
+    @transaction_items = @account.transaction_items
+    
+    start_date = "2013-07-01"
+    end_date = "2013-07-31"
+    @current_transaction_items = @account.transaction_items
+    #@current_transaction_items = @transaction_items.find(:all, :include => :transactions, :conditions => ["date between ? and ?", start_date, end_date ])
 
     respond_to do |format|
       format.html # show.html.erb

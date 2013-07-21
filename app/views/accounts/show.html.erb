@@ -1,49 +1,45 @@
-<p>
-  <b>Name:</b>
-  <%= @account.name %>
-</p>
-
-<p>
-	<b>Current:</b>
+<h2 align="center">
+  <%= @account.name %> | 	
 	<% if @account.current == "true"%>
-		Currrent <%= @account.bs_category.name %>
+		Current <%= @account.bs_category.name %>
 	<% else %>
-		Non-Currrent <%= @account.bs_category.name %>
+		Non-Current <%= @account.bs_category.name %>
 	<% end %>
+</h2>
+<br>
+<div>
+	<div class="row-fluid" align="center">
+		<div class="span2 offset4">
+			<h3>Sub Accounts</h3>
+		</div>
+		<div class="span2" style="margin-top:10px;">
+			<button type="button" id="new_sub_account" class="btn btn-primary">New Sub-Account</button>
+		</div>
+	</div>
+	<div class="row-fluid" align="center">
+		<div class="span4 offset4">
+			<%= render :template => '/sub_accounts/index'%>
+		</div>
+	</div>
 	
-</p>
-
-<p>
-  <b>Bs category:</b>
-  <%= @account.bs_category.name %>
-</p>
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
-<hr>
-<h4>Sub Accounts</h4>
-<table class="table table-hover table-condensed">
-	<thead>
-		  <tr>
-		    <th width="100">Name</th>
-		    <th width="100">Actions</th>
-		  </tr>
-	</thead>
-	<tbody>
-		<% @account.sub_accounts.each do |sub_account| %>
-		  <tr>
-		    <td><%= sub_account.name %></td>
-		    <td><%= link_to 'Show', sub_account %>
-				<%= link_to 'Edit', edit_sub_account_path(sub_account) %>
-				<%= link_to 'Destroy', sub_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		  </tr>
-		<% end %>
-	</tbody>
-</table>
-<br />
-
-<button type="button" id="new_sub_account" class="btn btn-primary">New Sub-Account</button>
-<div class="sub_account_form">
-	<%= render :partial => '/sub_accounts/form' %>
+	<div class="row-fluid" align="center">
+		<div class="span4 offset4 sub_account_form">
+			<%= render :partial => '/sub_accounts/form' %>
+		</div>
+	</div>
 </div>
 
 
+<div>
+	<h3>Transactions</h3>
+	<hr>
+	<% @account.transactions.each do |transaction| %>
+		<%= render :template => 'transactions/transaction_display', :locals => {transaction: transaction} %>
+	<% end %>
+	<br />
+</div>
+
+
+<br></br>
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713140355) do
+ActiveRecord::Schema.define(:version => 20130721035346) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(:version => 20130713140355) do
 
   create_table "projections", :force => true do |t|
     t.decimal  "amount"
-    t.date     "period"
     t.boolean  "success"
     t.integer  "sub_account_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "month"
+    t.integer  "year"
   end
 
   create_table "sub_accounts", :force => true do |t|

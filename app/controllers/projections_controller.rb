@@ -25,6 +25,7 @@ class ProjectionsController < ApplicationController
   # GET /projections/new.json
   def new
     @projection = Projection.new
+    @sub_accounts = SubAccount.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class ProjectionsController < ApplicationController
   # GET /projections/1/edit
   def edit
     @projection = Projection.find(params[:id])
+    @sub_accounts = SubAccount.all    
   end
 
   # POST /projections

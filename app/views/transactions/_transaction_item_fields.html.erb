@@ -1,0 +1,19 @@
+<fieldset>
+	<div class="span3">			
+		<%= f.label :debit, "Type" %>
+		<%= f.select :debit, options_for_select([["Debit", "true"], ["Credit", "false"]], :selected => true) %></br>
+	</div>
+	<div class="span3">			
+		<%= f.label "Account" %>
+		<%= f.collection_select(:sub_account_id, @sub_accounts, :id, :name, :prompt => 'Please select') %>
+	</div>
+	<div class="span3">			
+		<%= f.label :amount %>
+		<%= f.text_field :amount %>
+	</div>
+	<div class="span2" style="margin-top:25px">			
+		<%= f.hidden_field :_destroy %>
+		<%= link_to "remove", '#', class: "remove_fields" %>
+	</div>
+	<%= f.hidden_field :transaction_id, :value => @transaction.id %>
+</fieldset>

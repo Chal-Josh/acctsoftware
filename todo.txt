@@ -13,14 +13,19 @@ Page: New-transaction
 	- Add select box for account
 	- Add ajax to make the sub-account list auto refresh based on selected Account
 	- Default one of the transaction items to Credit
-	- Add ability to add in multiple transaction items
 	- Order transaction items from debit to credut
 	- Show total of debits - credits on page with auto refresh with new amounts being entered
 	- Do not allow transaction to submit without a balanced debit - credit
+	- Validate existence of each field (sub_account_id, amount, etc)
+	- Fix styling so the divs are in line down the left side
+	- Bring in current_value of debit in options for select from DB in edit
 	
 Page: Balance Sheet
 	- Add a balance sheet
 	
 App: 
 	- Add authentication model
+	- Require transfer of transactions to another sub_account / account on delete
+	
+	
 	

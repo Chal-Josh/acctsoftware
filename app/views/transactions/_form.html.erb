@@ -9,36 +9,26 @@
       </ul>
     </div>
   <% end %>
-	<div class="field">
-		<%= f.label :date %>
-		<%= f.text_field :date %>
+	<div class="row-fluid">
+		<div class="span3 field">
+			<%= f.label :date %>
+			<%= f.text_field :date %>
+		</div>
+		<div class="span6 field">
+			<%= f.label :memo %>
+    		<%= f.text_field :memo %>
+		</div>
 	</div>
-	<div class="field">
-		<%= f.label :memo %>
-		<%= f.text_field :memo %>
-	</div>
-	<h4>Transaction Items</h4>
 	<%= f.fields_for :transaction_items do |builder| %>
 		<div class="row-fluid">
-			<fieldset>
-				<div class="span3">			
-					<%= builder.label :debit, "Type" %>
-					<%= builder.select :debit, options_for_select([["Debit", "true"], ["Credit", "false"]]) %>
-				</div>
-				<div class="span3">			
-					<%= builder.label :sub_account_id %>
-					<%= builder.collection_select(:sub_account_id, @sub_accounts, :id, :name, :prompt => 'Please select') %>
-				</div>
-				<div class="span3">			
-					<%= builder.label :amount %>
-					<%= builder.text_field :amount %>
-				</div>
-				<%= builder.hidden_field :transaction_id, :value => @transaction.id %>
-			</fieldset>
-			<br>
-		</div>
+			<%= render 'transaction_item_fields', f: builder %>
 	<% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+		</div>
+		<%= link_to_add_fields "Add Item", f, :transaction_items %>
+		<br>
+		<div class="row-fluid">
+			<div class="actions">
+				<%= f.submit "Submit", :class => "span2 btn btn-success" %>
+			</div>
+		</div>
 <% end %>

@@ -1,31 +1,57 @@
 <h4>Budget</h4>
+<%= form_tag management_budget_path, :method => 'get' do %>
+	<p>
+		<%= select_month(@month.to_f) %>
+		<%= select_year(@year.to_f.round) %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
 
 <table>
-	<tr style="border-bottom: thin solid black;">	
-		<th width="250" align="left">Account</th>
-		<th>Balance</th>
-	<tr>
-	<tr height="15"></tr>	
-	<% @accounts.each do |account| %>
+	<thead align="right">
+		<tr style="border-bottom: thin solid black;">	
+			<th width="250" align="left">Account</th>
+			<th width="100">To Date</th>
+			<th width="100">Per Day</th>
+			<th width="200"></th>
+			<th width="100" style="margin-left:50px;">Projected Month End</th>
+			<th width="100">Budgeted Month End</th>
 		<tr>
-			<td><b><%= account.name %></b></td>
-		</tr>
-		<% account.sub_accounts.each do |sub_account| %>	
+		<tr height="15"></tr>	
+	</thead>
+	<tbody align="right">
+		<% @accounts.each do |account| %>
 			<tr>
-				<td><%= sub_account.name %></td>
-				<td>$ <%= sub_account.sub_account_balance(sub_account) %></td>
+				<td align="left"><b><%= account.name %></b></td>
 			</tr>
+			<% account.sub_accounts.each do |sub_account| %>	
+				<tr>
+					<td align="left"><%= sub_account.name %></td>
+					<td>$ <%= sub_account.sub_account_period_balance(sub_account, @month, @year) %></td>
+					<td>Incomplete</td>
+					<td></td>
+					<td>Incomplete</td>
+					<td><%= sub_account.sub_account_current_month_projection(sub_account, @month, @year) %></td>
+				</tr>
+			<% end %>
+			<tr style="border-top: thin solid black;">
+				<td align="left"><b>Total <%= account.name %></b></td>
+				<td><b>$ <%= account.account_balance(account) %></b></td>
+				<td>Incomplete</td>
+				<td></td>
+				<td>Incomplete</td>
+				<td>Incomplete</td>
+			</tr>
+			<tr height="15"></tr>
 		<% end %>
-		<tr style="border-top: thin solid black;">
-			<td><b>Total <%= account.name %></b></td>
-			<td><b>$ <%= account.account_balance(account) %></b></td>
+		<tr height="15"></tr>	
+		<tr style="border-top: thin solid black;border-bottom: thin solid black;">
+			<td align="left"><b>Net Income</b></td>
+			<td><b>$ <%= @bs_category.bs_category_balance(@bs_category) %></b></td>
+			<td>Incomplete</td>
+			<td></td>
+			<td>Incomplete</td>
+			<td>Incomplete</td>
 		</tr>
-		<tr height="15"></tr>
-	<% end %>
-	<tr height="15"></tr>	
-	<tr style="border-top: thin solid black;border-bottom: thin solid black;">
-		<td><b>Net Income</b></td>
-		<td><b>$ <%= @bs_category.bs_category_balance(@bs_category) %></b></td>
-	</tr>
-	
+	</tbody>
 </table>

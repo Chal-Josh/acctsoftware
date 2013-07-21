@@ -10,23 +10,27 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :sub_account_id %><br />
+    <%= f.collection_select(:sub_account_id, @sub_accounts, :id, :name, :prompt => 'Please select an account') %>
+  </div>
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.text_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :period %><br />
-    <%= f.datetime_select :period %>
+    <%= f.label :month %><br />
+    <%= f.number_field :month %>
   </div>
   <div class="field">
-    <%= f.label :success %><br />
+    <%= f.label :year %><br />
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :success %>
     <%= f.check_box :success %>
   </div>
-  <div class="field">
-    <%= f.label :sub_account_id %><br />
-    <%= f.number_field :sub_account_id %>
-  </div>
+<br>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,15 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2>
+  <%= @sub_account.name %> | <%= @sub_account.account.name %>	
+</h2>
+<h4>
+	Current Account Balance = <%= @sub_account.sub_account_balance(@sub_account) %>
+</h4>
+<hr>
+<div>
 
-<p>
-  <b>Name:</b>
-  <%= @sub_account.name %>
-</p>
-
-<p>
-  <b>Account:</b>
-  <%= @sub_account.account_id %>
-</p>
+	<div>
+		<h3>Transactions</h3>
+		<hr>
+		<% @sub_account.transactions.each do |transaction| %>
+			<%= render :template => 'transactions/transaction_display', :locals => {transaction: transaction} %>
+		<% end %>
+		<br />
+	</div>
 
 
 <%= link_to 'Edit', edit_sub_account_path(@sub_account) %> |
-<%= link_to 'Back', sub_accounts_path %>
+<%= link_to 'Back', account_path(@sub_account.account) %>
