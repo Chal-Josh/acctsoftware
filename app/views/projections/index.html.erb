@@ -1,25 +1,21 @@
 <h1>Listing projections</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
-    <th>Amount</th>
+    <th>Account</th>
     <th>Period</th>
-    <th>Success</th>
-    <th>Sub account</th>
-    <th></th>
-    <th></th>
+    <th>Amount</th>
     <th></th>
   </tr>
 
 <% @projections.each do |projection| %>
   <tr>
+    <td><%= projection.sub_account.account.name %> | <%= projection.sub_account.name %></td>
+    <td><%= projection.month %>-<%= projection.year %></td>
     <td><%= projection.amount %></td>
-    <td><%= projection.period %></td>
-    <td><%= projection.success %></td>
-    <td><%= projection.sub_account_id %></td>
-    <td><%= link_to 'Show', projection %></td>
-    <td><%= link_to 'Edit', edit_projection_path(projection) %></td>
-    <td><%= link_to 'Destroy', projection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', projection %>
+		<%= link_to 'Edit', edit_projection_path(projection) %>
+		<%= link_to 'Destroy', projection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
