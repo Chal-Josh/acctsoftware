@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.order("date DESC").all
     @transaction = Transaction.new
     2.times do
         @transaction.transaction_items.build

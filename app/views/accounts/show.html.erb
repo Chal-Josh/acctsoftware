@@ -33,7 +33,7 @@
 <div>
 	<h3>Transactions</h3>
 	<hr>
-	<% @account.transactions.each do |transaction| %>
+	<% @account.transactions.order("date DESC").each do |transaction| %>
 		<%= render :template => 'transactions/transaction_display', :locals => {transaction: transaction} %>
 	<% end %>
 	<br />
