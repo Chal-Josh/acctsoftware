@@ -1,13 +1,11 @@
 Page: Monthly Budget
 	- Add links to sub-accounts to make them clickable
-	- Add date range to select a month submit button to select a specific date range 
-	- Auto update statement on date range change
-	- Add budgeted amount
+	- break budget up into rendered templates for readability
+	- change formatting to div bootstrap formatting
 	
 
 Page: Sub-Account Show
-	- Add list of transactions
-	- Add link to transactions to show transaction
+	- Add ability to manage projections
 
 Page: New-transaction
 	- Add select box for account
@@ -20,12 +18,21 @@ Page: New-transaction
 	- Fix styling so the divs are in line down the left side
 	- Bring in current_value of debit in options for select from DB in edit
 	
+Page: Edit Transaction
+	- Fix navigation. Change back button to back_to_transaction, back_to_account etc
+	- Fix controller so it doesnt build empty items when not neccesary
+	
 Page: Balance Sheet
 	- Add a balance sheet
 	
 App: 
-	- Add authentication model
+	- Add authentication model to all transaction, transaction_items, sub_account, account
 	- Require transfer of transactions to another sub_account / account on delete
+	- Add user model. Account belongs to user. everything else belongs to the account.
 	
+Transaction Listing
+	- Whenever a transaction is listed in accounting format, link the line-item rows to go to the relevant sub-account
+		
 	
+
 	
