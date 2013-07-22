@@ -35,6 +35,7 @@ class SubAccountsController < ApplicationController
   # GET /sub_accounts/1/edit
   def edit
     @sub_account = SubAccount.find(params[:id])
+    @account = @sub_account.account
   end
 
   # POST /sub_accounts
