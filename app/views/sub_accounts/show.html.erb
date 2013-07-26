@@ -1,16 +1,21 @@
-<h2>
-  <%= @sub_account.name %> | <%= @sub_account.account.name %>	
-</h2>
-<h4>
-	Current Account Balance = <%= @sub_account.sub_account_balance(@sub_account) %>
-</h4>
+<div class="row-fluid">
+	<div class="span6">
+		<h2><%= @sub_account.name %> | <%= @sub_account.account.name %></h2>
+		<h4>Current Account Balance = <%= @sub_account.sub_account_balance(@sub_account) %></h4>
+	</div>
+	<div class="span2 pull-right" style="margin-top:15px;">
+		<button type="button" id="add_transaction" class="btn btn-primary">New Transaction</button>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span12 transaction_form">
+		<h3>New transaction</h3>
+		<%= render :template => 'transactions/_form', :locals => {sub_account: "Present"} %>
+	</div>
+</div>
 
-<div class="transaction_form">
-	<h3>New transaction</h3>
-	<%= render :template => 'transactions/_form', :locals => {sub_account: "Present"} %>
-</div></div>
 
-<hr>
+
 <div>
 
 	<div>
