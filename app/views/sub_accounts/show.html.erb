@@ -4,6 +4,12 @@
 <h4>
 	Current Account Balance = <%= @sub_account.sub_account_balance(@sub_account) %>
 </h4>
+
+<div class="transaction_form">
+	<h3>New transaction</h3>
+	<%= render :template => 'transactions/_form', :locals => {sub_account: "Present"} %>
+</div></div>
+
 <hr>
 <div>
 

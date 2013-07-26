@@ -14,6 +14,11 @@ class SubAccountsController < ApplicationController
   # GET /sub_accounts/1.json
   def show
     @sub_account = SubAccount.find(params[:id])
+    @transaction = Transaction.new
+    2.times do
+        @transaction.transaction_items.build
+    end
+    @sub_accounts = SubAccount.all    
 
     respond_to do |format|
       format.html # show.html.erb

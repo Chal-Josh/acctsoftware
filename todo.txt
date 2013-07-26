@@ -1,37 +1,51 @@
-Page: Monthly Budget
-	- Add links to sub-accounts to make them clickable
-	- break budget up into rendered templates for readability
-	- change formatting to div bootstrap formatting
-	
-
-Page: Sub-Account Show
-	- Add ability to manage projections
-
-Page: New-transaction
-	- Add select box for account
-	- Add ajax to make the sub-account list auto refresh based on selected Account
-	- Default one of the transaction items to Credit
-	- Order transaction items from debit to credut
-	- Show total of debits - credits on page with auto refresh with new amounts being entered
-	- Do not allow transaction to submit without a balanced debit - credit
-	- Validate existence of each field (sub_account_id, amount, etc)
-	- Fix styling so the divs are in line down the left side
-	- Bring in current_value of debit in options for select from DB in edit
-	
-Page: Edit Transaction
-	- Fix navigation. Change back button to back_to_transaction, back_to_account etc
-	- Fix controller so it doesnt build empty items when not neccesary
-	
-Page: Balance Sheet
-	- Add a balance sheet
-	
-App: 
-	- Add authentication model to all transaction, transaction_items, sub_account, account
+App: General 
 	- Require transfer of transactions to another sub_account / account on delete
 	- Add user model. Account belongs to user. everything else belongs to the account.
-	
-Transaction Listing
+
+Div: Transaction Listing
 	- Whenever a transaction is listed in accounting format, link the line-item rows to go to the relevant sub-account
+	- Only list first x characters of the memo to fit within the span line
+	- Model mobile version of listing after Citi mobile transactions (CC)
+
+!!!!Page: Management
+!!!!- Budget / Update period formula to include transactions within date range custom to each month. i.e, february only 28 days
+	- Budget / Add row-links to sub-accounts to make them clickable
+	- Budget / break budget up into rendered templates for readability
+	- Budget / change formatting to div bootstrap formatting
+	- Budget / Add the ability to look at just actuals over a period of time (projections for actual in a different color, budget for projected)
+	- Budget / Add the ability to look at Income over a range other than 1 month. i.e., June - Dec 2013
+	- Budget / Dont show accounts with 0 balance during the period
+	- Budget / fix all number formatting. All 2 decimal places. $ in right places. Prettier. Right aligned dedcimals.
+	- Balance Sheet / Add a current balance sheet
+	- Balance Sheet / Add the ability to go back and look at BS at a point in time
+	- Balance Sheet / Add the ability to look at BS over multiple periods
+	- Balance Sheet / Dont show accounts that dont have a balance as of the show date
+
+Page: Sub-Account
+	- Form / Add authentication to attributes
+	- Show / Add ability to manage projections
+	- Edit / Add description to the model and enable user to leave description of account
+	- Show / Add ability to add categories to expenses
+
+Page: Account
+	- Form / Add authentication to attributes
+	- Show / Add ability to manage projections
+	- Edit / Add description to the model and enable user to leave description of account
+
+Page: Transaction
+	- Form / Add button to customer expense form. Create custom expense form to automate any possible steps
+	- Form / Add nested dropdown menu for bs_categories, accounts, sub_accounts
+	- Form / Add ajax to make the sub-account list auto refresh based on selected Account
+	- Form / Default one of the transaction items to Credit
+	- Form / Order transaction items from debit to credit
+	- Form / Show total of debits - credits on page with auto refresh with new amounts being entered
+	- Form / Do not allow transaction to submit without a balanced debit - credit
+	- Form / Validate existence of each field (sub_account_id, amount, etc)
+	- Form / Fix styling so the divs are in line down the left side
+	- New / Ajax refresh to remove page change after form submit
+	- Edit / Bring in current_value of debit in options for select from DB in edit
+	- Edit / Fix navigation. Change back button to back_to_transaction, back_to_account etc	
+	- Edit / Fix controller so it doesnt build empty items when not neccesary
 		
 	
 
