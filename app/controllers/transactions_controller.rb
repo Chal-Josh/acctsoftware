@@ -47,7 +47,7 @@ class TransactionsController < ApplicationController
   def edit
     @transaction = Transaction.find(params[:id])
     @sub_accounts = SubAccount.all    
-    unless @transaction.transaction_items.nil?
+    if @transaction.transaction_items.nil?
         2.times do
             @transaction.transaction_items.build
         end
@@ -77,7 +77,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to :back, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to accounts_path(), notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { redirect_to :back, alert: 'Transaction could not be added.'}

@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="span5">
-		<strong><p> <%= link_to [transaction.date, transaction.memo].join(" | "), edit_transaction_path(transaction)%> </p></strong>
+		<strong><p> <%= link_to [transaction.date, truncate(transaction.memo, :length => 50)].join(" | "), edit_transaction_path(transaction)%> </p></strong>
 	</div>
 	<div class="offset4 span1">
 		<strong><p>Debit</p></strong>

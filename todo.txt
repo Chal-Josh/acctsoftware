@@ -1,6 +1,6 @@
 App: General 
-	- Require transfer of transactions to another sub_account / account on delete
 	- Add user model. Account belongs to user. everything else belongs to the account.
+	- Comment out the code
 
 Div: Transaction Listing
 	- Whenever a transaction is listed in accounting format, link the line-item rows to go to the relevant sub-account
@@ -14,9 +14,6 @@ Div: Transaction Listing
 	- Budget / change formatting to div bootstrap formatting
 	- Budget / Add the ability to look at just actuals over a period of time (projections for actual in a different color, budget for projected)
 	- Budget / Add the ability to look at Income over a range other than 1 month. i.e., June - Dec 2013
-	- Budget / Dont show accounts with 0 balance during the period
-	- Budget / fix all number formatting. All 2 decimal places. $ in right places. Prettier. Right aligned dedcimals.
-	- Balance Sheet / Add a current balance sheet
 	- Balance Sheet / Add the ability to go back and look at BS at a point in time
 	- Balance Sheet / Add the ability to look at BS over multiple periods
 	- Balance Sheet / Dont show accounts that dont have a balance as of the show date
@@ -43,9 +40,7 @@ Page: Transaction
 	- Form / Validate existence of each field (sub_account_id, amount, etc)
 	- Form / Fix styling so the divs are in line down the left side
 	- New / Ajax refresh to remove page change after form submit
-	- Edit / Bring in current_value of debit in options for select from DB in edit
 	- Edit / Fix navigation. Change back button to back_to_transaction, back_to_account etc	
-	- Edit / Fix controller so it doesnt build empty items when not neccesary
 		
 	
 

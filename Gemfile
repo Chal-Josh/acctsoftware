@@ -34,9 +34,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 # makes variables from models available in JS
 gem 'gon'
 
-
 # authentication system
-gem 'devise'
 gem 'omniauth-linkedin'
 
 # To use ActiveModel has_secure_password

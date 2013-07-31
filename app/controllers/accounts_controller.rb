@@ -79,11 +79,18 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1.json
   def destroy
     @account = Account.find(params[:id])
-    @account.destroy
-
-    respond_to do |format|
-      format.html { redirect_to accounts_url }
-      format.json { head :no_content }
+    # check to see if account has any transaction items tied to it. Do not allow deletion if true.
+    if @account.transaction_items.empty?
+        @account.destroy
+        respond_to do |format|
+          format.html { redirect_to accounts_path(), notice: 'Account Deleted' }
+          format.json { head :no_content }
+        end
+    else 
+        respond_to do |format|
+          format.html { redirect_to :back, alert: 'Could not be deleted. You must transfer all Transaction Items.' }
+          format.json { head :no_content }
+        end
     end
   end
 end

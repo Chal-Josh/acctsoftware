@@ -9,7 +9,7 @@
 
 <table>
 	<thead align="right">
-		<tr style="border-bottom: thin solid black;">	
+		<tr style="border-bottom: thin solid black;">
 			<th width="250" align="left">Account</th>
 			<th width="100">To Date</th>
 			<th width="100">Per Day</th>
@@ -26,34 +26,36 @@
 			</tr>
 			<% styling_first_position = 1 %>
 			<% account.sub_accounts.each do |sub_account| %>	
-				<tr>
-					<td align="left"><%= sub_account.name %></td>
-					<td><%= "$" if styling_first_position == 1 %><%= sub_account.sub_account_period_balance(sub_account, @month, @year) %></td>
-					<td>Incomplete</td>
-					<td></td>
-					<td>Incomplete</td>
-					<td><%= sub_account.sub_account_current_month_projection(sub_account, @month, @year) %></td>
-				</tr>
-				<% styling_first_position += 1 %>
+				<% if sub_account.sub_account_period_balance(sub_account, @month, @year) > 0 || sub_account.sub_account_current_month_projection(sub_account, @month, @year) > 0 %>
+					<tr>
+						<td align="left"><%= sub_account.name %></td>
+						<td><%= "$" if styling_first_position == 1 %><%= number_with_delimiter(sub_account.sub_account_period_balance(sub_account, @month, @year), :precision => 0, :delimiter => ",") %></td>
+						<td>NA</td>
+						<td></td>
+						<td>NA</td>
+						<td><%= number_with_delimiter(sub_account.sub_account_current_month_projection(sub_account, @month, @year), :precision => 0, :delimiter => ",") %></td>
+					</tr>
+					<% styling_first_position += 1 %>
+				<% end %>
 			<% end %>
 			<tr style="border-top: thin solid black;">
 				<td align="left"><b>Total <%= account.name %></b></td>
-				<td><b>$ <%= account.account_period_balance(account, @month, @year) %></b></td>
-				<td>Incomplete</td>
+				<td><b><%= number_to_currency(account.account_period_balance(account, @month, @year), :unit => "$") %></b></td>
+				<td>NA</td>
 				<td></td>
-				<td>Incomplete</td>
-				<td><%= account.account_current_month_projection(account, @month, @year) %></td>
+				<td>NA</td>
+				<td><%= number_to_currency(account.account_current_month_projection(account, @month, @year), :unit => "$") %>
 			</tr>
 			<tr height="15"></tr>
 		<% end %>
 		<tr height="15"></tr>	
 		<tr style="border-top: thin solid black;border-bottom: thin solid black;">
 			<td align="left"><strong>Net Income</strong></td>
-			<td><strong>$ <%= @bs_category.bs_category_period_balance(@bs_category, @month, @year) %></strong></td>
-			<td>Incomplete</td>
+			<td><strong><%= number_to_currency(@bs_category.bs_category_period_balance(@bs_category, @month, @year), :unit => "$") %></strong></td>
+			<td>NA</td>
 			<td></td>
-			<td>Incomplete</td>
-			<td><strong>$ <%= @bs_category.bs_category_current_month_projection(@bs_category, @month, @year) %></strong></td>
+			<td>NA</td>
+			<td><strong><%= number_to_currency(@bs_category.bs_category_current_month_projection(@bs_category, @month, @year), :unit => "$") %></strong></td>
 		</tr>
 	</tbody>
 </table>

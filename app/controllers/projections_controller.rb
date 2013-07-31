@@ -2,8 +2,21 @@ class ProjectionsController < ApplicationController
   # GET /projections
   # GET /projections.json
   def index
-    @projections = Projection.all
-
+    # check to see if the user has submitted a query. If query submitted, grab the variables and convert to 2-digit month
+    if params[:date]
+        if params[:date][:month].length == 2
+            @month = params[:date][:month]
+        else 
+            @month = "0" + params[:date][:month]
+        end
+        @year = params[:date][:year]
+    else
+        time = Time.now
+        @month = time.strftime("%m")
+        @year = time.strftime("%Y")
+    end
+    @projections = Projection.where(:month => @month, :year => @year).all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projections }

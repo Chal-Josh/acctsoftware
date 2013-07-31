@@ -1,8 +1,16 @@
 <h1>Listing projections</h1>
 
+<%= form_tag projections_path, :method => 'get' do %>
+	<p>
+		<%= select_month(@month.to_f) %>
+		<%= select_year(@year.to_f.round) %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
+
 <table class="table table-hover">
   <tr>
-    <th>Account</th>
+    <th>Account | Sub-Account</th>
     <th>Period</th>
     <th>Amount</th>
     <th></th>

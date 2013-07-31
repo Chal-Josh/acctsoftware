@@ -42,4 +42,5 @@
 
 <br></br>
 <%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Back', accounts_path %> | 
+<%= link_to 'Destroy', @account, method: :delete, data: { confirm: 'Are you sure?' } %></td>

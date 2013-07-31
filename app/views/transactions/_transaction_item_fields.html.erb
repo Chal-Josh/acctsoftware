@@ -1,7 +1,7 @@
 <fieldset>
 	<div class="span3">			
 		<%= f.label :debit, "Type" %>
-		<%= f.select :debit, options_for_select([["Debit", "true"], ["Credit", "false"]], :selected => true) %></br>
+		<%= f.select :debit, options_for_select([["Debit", "true"], ["Credit", "false"]], :selected => f.object.debit ) %></br>
 	</div>
 	<div class="span3">			
 		<%= f.label "Account" %>

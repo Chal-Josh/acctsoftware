@@ -79,11 +79,19 @@ class SubAccountsController < ApplicationController
   # DELETE /sub_accounts/1.json
   def destroy
     @sub_account = SubAccount.find(params[:id])
-    @sub_account.destroy
-
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.json { head :no_content }
+    
+    # check to see if sub-account has any transaction items tied to it. Do not allow deletion if true.
+    if @sub_account.transaction_items.empty?
+        @sub_account.destroy
+        respond_to do |format|
+          format.html { redirect_to :back, notice: 'Sub-Account Deleted' }
+          format.json { head :no_content }
+        end
+    else 
+        respond_to do |format|
+          format.html { redirect_to :back, alert: 'Could not be deleted. You must transfer all Transaction Items.' }
+          format.json { head :no_content }
+        end
     end
   end
 end

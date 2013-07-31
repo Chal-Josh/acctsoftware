@@ -2,32 +2,32 @@
 <hr>
 
 
-<table class="table table-condensed">
+<table class="table table-condensed table-hover" data-provides="rowlink">
 	<thead>
 		<tr>
 			<th width="50"></th>
 			<th width="100"></th>
 			<th width="50"></th>
+			<th width="50"></th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody data-provides="rowlink">
 		<% @bs_categories.each do |bs_category| %>
-			<tr style="color:white;background-color:black;"><td><strong><%= bs_category.name %></strong></td><td></td><td></td></tr>
+			<tr style="color:white;background-color:black;"><td><strong><%= bs_category.name %></strong></td><td></td><td style="text-align:right;"><%= number_to_currency(bs_category.bs_category_balance(bs_category), :unit => "$") %></td><td></td></tr>
 			<% bs_category.accounts.each do |account| %>
-				<tr>
-			    	<td><%= account.name %></td>
+				<tr data-provides="rowlink">
+			    	<td><%= link_to account.name, account_path(account) %></td>
 					<td></td>
-				    <td><%= link_to 'Show', account %>
-						<%= link_to 'Edit', edit_account_path(account) %>
-						<%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				    <td style="text-align:right;"><strong><%= number_to_currency(account.account_balance(account), :unit => "$") %></strong></td>
+					<td></td>
 				</tr>
 				<% account.sub_accounts.each do |sub_account | %>
 					<tr>
 						<td></td>
-				    	<td><%= sub_account.name %></td>
-					    <td><%= link_to 'Show', sub_account %>
-							<%= link_to 'Edit', edit_account_path(account) %>
-							<%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				    	<td><%= link_to sub_account.name, sub_account_path(sub_account) %></td>
+						<!-- move the number with delimiter into a helper-->
+					    <td style="text-align:right;"><%= number_with_delimiter(sub_account.sub_account_balance(sub_account), :delimitaer => ",", :precision => 2) %></td>
+						<td></td>
 					</tr>
 				<% end %>	
 			<% end %>
