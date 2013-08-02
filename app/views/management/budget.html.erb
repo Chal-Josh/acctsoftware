@@ -26,7 +26,7 @@
 			</tr>
 			<% styling_first_position = 1 %>
 			<% account.sub_accounts.each do |sub_account| %>	
-				<% if sub_account.sub_account_period_balance(sub_account, @month, @year) <> 0 || sub_account.sub_account_current_month_projection(sub_account, @month, @year) <> 0 %>
+				<% if sub_account.sub_account_period_balance(sub_account, @month, @year) != 0 || sub_account.sub_account_current_month_projection(sub_account, @month, @year) != 0 %>
 					<tr>
 						<td align="left"><%= sub_account.name %></td>
 						<td><%= "$" if styling_first_position == 1 %><%= number_with_delimiter(sub_account.sub_account_period_balance(sub_account, @month, @year), :precision => 0, :delimiter => ",") %></td>
