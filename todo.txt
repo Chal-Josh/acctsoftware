@@ -1,35 +1,41 @@
 App: General 
 	- Add user model. Account belongs to user. everything else belongs to the account.
 	- Comment out the code
+	- Link up all navigation
 
-Div: Transaction Listing
-	- Whenever a transaction is listed in accounting format, link the line-item rows to go to the relevant sub-account
-	- Only list first x characters of the memo to fit within the span line
-	- Model mobile version of listing after Citi mobile transactions (CC)
+Interface: Transaction Listing
+	- Transaction View / Link the line-item rows to go to the relevant sub-account
+	- Transaction Item View / Add this view to show all transaction items in single rows with the date, memo, increase / decrease, and account balance at that period
+	- General / Everywhere transactions are displayed, add a toggle to display in Transaction vs. Item mode
 
-!!!!Page: Management
+!!!!Interface: Management
 !!!!- Budget / Update period formula to include transactions within date range custom to each month. i.e, february only 28 days
+	- Budget / Update instance variables to properly display all accounts with a balance for the period vs 0 balance
+	- Budget / Format all numbers to 0 decimal places for budget view
 	- Budget / Add row-links to sub-accounts to make them clickable
 	- Budget / break budget up into rendered templates for readability
 	- Budget / change formatting to div bootstrap formatting
 	- Budget / Add the ability to look at just actuals over a period of time (projections for actual in a different color, budget for projected)
 	- Budget / Add the ability to look at Income over a range other than 1 month. i.e., June - Dec 2013
+	- Budget / Change expenses to positive numbers, make sure all sums are working
 	- Balance Sheet / Add the ability to go back and look at BS at a point in time
 	- Balance Sheet / Add the ability to look at BS over multiple periods
 	- Balance Sheet / Dont show accounts that dont have a balance as of the show date
 
-Page: Sub-Account
+Model: Sub-Account
 	- Form / Add authentication to attributes
 	- Show / Add ability to manage projections
 	- Edit / Add description to the model and enable user to leave description of account
 	- Show / Add ability to add categories to expenses
+	- Show / Add current month balance and current month projection
 
-Page: Account
+Model: Account
 	- Form / Add authentication to attributes
 	- Show / Add ability to manage projections
 	- Edit / Add description to the model and enable user to leave description of account
+	- Show / Add current month balance and current month projection
 
-Page: Transaction
+Model: Transaction
 	- Form / Add button to customer expense form. Create custom expense form to automate any possible steps
 	- Form / Add nested dropdown menu for bs_categories, accounts, sub_accounts
 	- Form / Add ajax to make the sub-account list auto refresh based on selected Account
@@ -39,9 +45,18 @@ Page: Transaction
 	- Form / Do not allow transaction to submit without a balanced debit - credit
 	- Form / Validate existence of each field (sub_account_id, amount, etc)
 	- Form / Fix styling so the divs are in line down the left side
+	- Form / Add memo to each individual transaction item. Make this optional to display. If user clicks button, they all fields appear.
 	- New / Ajax refresh to remove page change after form submit
 	- Edit / Fix navigation. Change back button to back_to_transaction, back_to_account etc	
-		
+
+Model: Projection
+	- Index / Add method in controller, activated on button click, to go through each projection for the selected month and update whether or not it was successful. Update button positioned next to current month/year selectors
+	- Form / Change projections form to have month and year selector instead of number field
+	- Index / Show projections visually for past months in terms of success and failure
+	- Form / On form submit, redirect to the Projections index with the month of the newly created projection active in the search bar.
+	- Index / Add form directly to page
+	- Form / Add ability to look at all income / expense accounts with balances in previous month, and check a box to model future projections after that month. 
+	- Form / Add ability to create projections for multiple months at once
 	
 
 	
