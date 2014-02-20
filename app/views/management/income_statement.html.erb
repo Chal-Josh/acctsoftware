@@ -1,0 +1,102 @@
+<h4>Income Statement</h4>
+<%= form_tag management_income_statement_path, :method => 'get' do %>
+	<p>
+		<h3>Start Date</h3>
+		<%= select_month(@month_start.to_f, :prefix => 'start') %>
+		<%= select_year(@year_start.to_f.round, :prefix => 'start') %>
+	</p>
+	<p>
+		<h3>End Date</h3>
+		<%= select_month(@month_end.to_f, :prefix => 'end') %>
+		<%= select_year(@year_end.to_f.round, :prefix => 'end') %>
+	</p>
+	<%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<table>
+	<thead align="right">
+		<tr style="border-bottom: thin solid black;">
+			<th width="250" align="left">Account</th>
+			<% current_month = @month_start.to_i %>
+			<% current_year = @year_start.to_i %>
+			<% current_period = 1 %>
+			<% while current_period <= @period_count %>
+				<th width="100"><%= current_month %>/<%= current_year %></th>
+				<% current_period += 1 %>
+				<% if current_month < 12 %>
+					<% current_month += 1 %>
+				<% else %>
+					<% current_month = 1 %>
+					<% current_year += 1 %>
+				<% end %>
+			<% end %>
+		<tr>
+		<tr height="15"></tr>	
+	</thead>
+	<tbody align="right">
+		<% @accounts.each do |account| %>
+			<tr>
+				<td align="left"><b><%= account.name %></b></td>
+			</tr>
+			<% styling_first_position = 1 %>
+			<% account.sub_accounts.each do |sub_account| %>	
+				<tr>
+					<td align="left"><%= sub_account.name %></td>
+					<% current_month = @month_start %>
+					<% current_year = @year_start %>
+					<% current_period = 1 %>
+					<% while current_period <= @period_count %>
+						<td><%= "$" if styling_first_position == 1 %><%= number_with_precision(sub_account.sub_account_period_balance(sub_account, current_month, current_year), :precision => 0, :delimiter => ",") %></td>
+						<% current_period += 1 %>
+						<% if current_month.to_i < 12 %>
+							<% current_month = (current_month.to_i + 1).to_s %>
+						<% else %>
+							<% current_month = "01" %>
+							<% current_year = (current_year.to_i + 1).to_s %>
+						<% end %>
+					<% end %>
+				</tr>
+				<% styling_first_position += 1 %>
+			<% end %>
+			<tr style="border-top: thin solid black;">
+				<td align="left"><b>Total <%= account.name %></b></td>
+				<% current_month = @month_start %>
+				<% current_year = @year_start %>
+				<% current_period = 1 %>
+				<% while current_period <= @period_count %>
+					<td><b><%= number_to_currency(account.account_period_balance(account, current_month, current_year), :precision => 0, :unit => "$") %></b></td>
+					<% current_period += 1 %>
+					<% if current_month.to_i < 12 %>
+						<% current_month = (current_month.to_i + 1).to_s %>
+					<% else %>
+						<% current_month = "01" %>
+						<% current_year = (current_year.to_i + 1).to_s %>
+					<% end %>
+				<% end %>
+			</tr>
+			<tr height="15"></tr>
+		<% end %>
+		<tr height="15"></tr>	
+		<tr style="border-top: thin solid black;border-bottom: thin solid black;">
+			<td align="left"><strong>Net Income</strong></td>
+			<% current_month = @month_start %>
+			<% current_year = @year_start %>
+			<% current_period = 1 %>
+			<% while current_period <= @period_count %>
+				<td><strong><%= number_to_currency(@bs_category.bs_category_period_balance(@bs_category, current_month, current_year), :precision => 0, :unit => "$") %></strong></td>
+				<% current_period += 1 %>
+				<% if current_month.to_i < 12 %>
+					<% current_month = (current_month.to_i + 1).to_s %>
+				<% else %>
+					<% current_month = "01" %>
+					<% current_year = (current_year.to_i + 1).to_s %>
+				<% end %>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+
+<br></br><br></br><br></br>
+
+
+
