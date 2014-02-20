@@ -1,6 +1,5 @@
 class TransactionItem < ActiveRecord::Base
   attr_accessible :amount, :category_id, :debit, :sub_account_id, :transaction_id
-  validates :amount, :debit, :presence => true
   
 
   
