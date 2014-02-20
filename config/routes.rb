@@ -11,6 +11,7 @@ Acctsoftware::Application.routes.draw do
   resources :bs_categories
   
   get '/management/budget'
+  get '/management/income_statement'
 
 
   # The priority is based upon order of creation:
