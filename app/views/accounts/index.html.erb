@@ -16,12 +16,12 @@
 	</thead>
 	<tbody data-provides="rowlink">
 		<% @bs_categories.each do |bs_category| %>
-			<tr style="color:white;background-color:black;"><td><strong><%= bs_category.name %></strong></td><td></td><td style="text-align:right;"><%= number_to_currency(bs_category.bs_category_balance(bs_category), :precision => 0, :unit => "$") %></td><td></td></tr>
+			<tr style="color:white;background-color:black;"><td><strong><%= bs_category.name %></strong></td><td></td><td style="text-align:right;"><%= number_to_currency(bs_category.bs_category_balance(bs_category), :precision => 0, :unit => "$", negative_format: "(%u%n)") %></td><td></td></tr>
 			<% bs_category.accounts.each do |account| %>
 				<tr data-provides="rowlink" <% if account.account_balance(account) == 0 %> class="EmptyRow" <% end %>>
 		    		<td><%= link_to account.name, account_path(account) %></td>
 					<td></td>
-			    	<td style="text-align:right;"><strong><%= number_to_currency(account.account_balance(account), :precision => 0, :unit => "$") %></strong></td>
+			    	<td style="text-align:right;"><strong><%= number_to_currency(account.account_balance(account), :precision => 0, :unit => "$", negative_format: "(%u%n)") %></strong></td>
 					<td></td>
 				</tr>
 				<% account.sub_accounts.each do |sub_account| %>
@@ -29,7 +29,7 @@
 						<td></td>
 				    	<td><%= link_to sub_account.name, sub_account_path(sub_account) %></td>
 						<!-- move the number with delimiter into a helper-->
-					    <td style="text-align:right;"><%= number_with_precision(sub_account.sub_account_balance(sub_account), :precision => 0, :significant => false) %></td>
+					    <td style="text-align:right;"><%= number_to_currency(sub_account.sub_account_balance(sub_account), :precision => 0, :significant => false, :delimiter => ",", :format => "%n", :negative_format => "(%n)") %></td>
 						<td></td>
 					</tr>
 				<% end %>
