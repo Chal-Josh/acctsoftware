@@ -1,8 +1,11 @@
 <h3>Account Management</h3>
 <hr>
 
+<div class="hide_rows_btn"><button type="button" id="hide_blank_rows" class="btn btn-primary">Hide Blank Rows</button></div>
+<div class="show_rows_btn"><button type="button" id="show_blank_rows" class="btn btn-primary">Show Blank Rows</button></div>
 
-<table class="table table-condensed table-hover" data-provides="rowlink">
+
+<table class="accts table table-condensed table-hover" data-provides="rowlink">
 	<thead>
 		<tr>
 			<th width="50"></th>
@@ -13,23 +16,23 @@
 	</thead>
 	<tbody data-provides="rowlink">
 		<% @bs_categories.each do |bs_category| %>
-			<tr style="color:white;background-color:black;"><td><strong><%= bs_category.name %></strong></td><td></td><td style="text-align:right;"><%= number_to_currency(bs_category.bs_category_balance(bs_category), :unit => "$") %></td><td></td></tr>
+			<tr style="color:white;background-color:black;"><td><strong><%= bs_category.name %></strong></td><td></td><td style="text-align:right;"><%= number_to_currency(bs_category.bs_category_balance(bs_category), :precision => 0, :unit => "$") %></td><td></td></tr>
 			<% bs_category.accounts.each do |account| %>
-				<tr data-provides="rowlink">
-			    	<td><%= link_to account.name, account_path(account) %></td>
+				<tr data-provides="rowlink" <% if account.account_balance(account) == 0 %> class="EmptyRow" <% end %>>
+		    		<td><%= link_to account.name, account_path(account) %></td>
 					<td></td>
-				    <td style="text-align:right;"><strong><%= number_to_currency(account.account_balance(account), :unit => "$") %></strong></td>
+			    	<td style="text-align:right;"><strong><%= number_to_currency(account.account_balance(account), :precision => 0, :unit => "$") %></strong></td>
 					<td></td>
 				</tr>
-				<% account.sub_accounts.each do |sub_account | %>
-					<tr>
+				<% account.sub_accounts.each do |sub_account| %>
+					<tr <% if sub_account.sub_account_balance(sub_account) == 0 %> class="EmptyRow" <% end %>>
 						<td></td>
 				    	<td><%= link_to sub_account.name, sub_account_path(sub_account) %></td>
 						<!-- move the number with delimiter into a helper-->
-					    <td style="text-align:right;"><%= number_with_delimiter(sub_account.sub_account_balance(sub_account), :delimitaer => ",", :precision => 2) %></td>
+					    <td style="text-align:right;"><%= number_with_precision(sub_account.sub_account_balance(sub_account), :precision => 0, :significant => false) %></td>
 						<td></td>
 					</tr>
-				<% end %>	
+				<% end %>
 			<% end %>
 		<% end %>
 	</tbody>
