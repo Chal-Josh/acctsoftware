@@ -23,7 +23,7 @@
 		<table class="accts table table-condensed table-hover" data-provides="rowlink">
 			<thead>
 				<tr>
-					<th width="25">Date</th>
+					<th width="35">Date</th>
 					<th width="100">Memo</th>
 					<th width="25" style="text-align:right;">Amount</th>
 					<th width="25" style="text-align:right;">Balance</th>
@@ -44,7 +44,7 @@
 					
 					<tr data-provides="rowlink">
 			    		<td><%= link_to transaction.date, transaction_path(transaction) %></td>
-						<td><%= transaction.memo %></td>
+						<td><%= transaction.memo.truncate(100) %></td>
 				    	<td style="text-align:right;"><%= number_to_currency(transaction_value, :precision => 0, :unit => "$", negative_format: "(%u%n)") %></td>
 						<td style="text-align:right;"><%= number_to_currency(running_total, :precision => 0, :unit => "$", negative_format: "(%u%n)") %></td>
 						
