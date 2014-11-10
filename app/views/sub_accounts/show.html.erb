@@ -19,12 +19,8 @@
 <div>
 
 	<div>
-		<h3>Transactions</h3>
+		<h3>Account History</h3>
 		<hr>
-		<% @sub_account.transactions.order("date DESC").each do |transaction| %>
-			<%= render :template => 'transactions/transaction_display', :locals => {transaction: transaction} %>
-		<% end %>
-		
 		<table class="accts table table-condensed table-hover" data-provides="rowlink">
 			<thead>
 				<tr>
