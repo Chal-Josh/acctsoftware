@@ -1,7 +1,8 @@
 <div class="row-fluid">
 	<div class="span6">
 		<h2><%= @sub_account.name %> | <%= @sub_account.account.name %></h2>
-		<h4>Current Account Balance = <%= @sub_account.sub_account_balance(@sub_account) %></h4>
+		<h4>Account Balance: <%= number_to_currency(@sub_account.sub_account_balance(@sub_account), :precision => 0, :unit => "$") %></h4>
+		
 	</div>
 	<div class="span2 pull-right" style="margin-top:15px;">
 		<button type="button" id="add_transaction" class="btn btn-primary">New Transaction</button>
@@ -15,7 +16,6 @@
 </div>
 
 
-
 <div>
 
 	<div>
@@ -24,6 +24,42 @@
 		<% @sub_account.transactions.order("date DESC").each do |transaction| %>
 			<%= render :template => 'transactions/transaction_display', :locals => {transaction: transaction} %>
 		<% end %>
+		
+		<table class="accts table table-condensed table-hover" data-provides="rowlink">
+			<thead>
+				<tr>
+					<th width="25">Date</th>
+					<th width="100">Memo</th>
+					<th width="25" style="text-align:right;">Amount</th>
+					<th width="25" style="text-align:right;">Balance</th>
+				</tr>
+			</thead>
+			<tbody data-provides="rowlink">
+				<% running_total = @sub_account.sub_account_balance(@sub_account) %>
+				<% @sub_account.transactions.order("date DESC").each do |transaction| %>
+					<% transaction_item = transaction.transaction_items.where(:sub_account_id => @sub_account.id).first %>
+					
+					<% if transaction_item.debit == true %>
+						<% value_multiplier = transaction_item.sub_account.account.bs_category.debit_impact %>
+					<% else %>
+						<% value_multiplier = transaction_item.sub_account.account.bs_category.credit_impact %>
+					<% end %>
+					<% transaction_value = transaction_item.amount * value_multiplier %>
+					
+					
+					<tr data-provides="rowlink">
+			    		<td><%= link_to transaction.date, transaction_path(transaction) %></td>
+						<td><%= transaction.memo %></td>
+				    	<td style="text-align:right;"><%= number_to_currency(transaction_value, :precision => 0, :unit => "$", negative_format: "(%u%n)") %></td>
+						<td style="text-align:right;"><%= number_to_currency(running_total, :precision => 0, :unit => "$", negative_format: "(%u%n)") %></td>
+						
+						<% running_total = running_total - transaction_value %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		
+		
 		<br />
 	</div>
 

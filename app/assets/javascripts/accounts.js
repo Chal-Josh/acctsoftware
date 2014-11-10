@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	/// Hide new instruction initially
 	$('div.sub_account_form').hide();
-	$('div.show_rows_btn').hide();
+	$('div.hide_rows_btn').hide();
 
 	
 	/// New instruction form
@@ -13,6 +13,7 @@ $(document).ready(function() {
 	/// Hide blanks rows
 	
 	var rows = $('table.accts tr');
+	var emptyRows = rows.filter('.EmptyRow').hide();
 	
 	$('#hide_blank_rows').click( function() {
 		var emptyRows = rows.filter('.EmptyRow').hide();

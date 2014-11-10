@@ -24,14 +24,17 @@
 				<% current_year = @year_start.to_i %>
 				<% current_period = 1 %>
 				<% while current_period <= @period_count %>
-					<th width="100"><%= current_month %>/<%= current_year %></th>
-					<% current_period += 1 %>
+					<% period_date = Time.new(current_year,current_month,1) %>
+					<th width="100"><%= period_date.strftime("%b-%y") %></th>
+
 					<% if current_month < 12 %>
 						<% current_month += 1 %>
 					<% else %>
 						<% current_month = 1 %>
 						<% current_year += 1 %>
 					<% end %>
+					
+					<% current_period += 1 %>
 				<% end %>
 			<tr>
 			<tr height="15"></tr>	

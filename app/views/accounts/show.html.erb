@@ -1,6 +1,6 @@
 <h2 align="center">
   <%= @account.name %> | 	
-	<% if @account.current == "true"%>
+	<% if @account.current == true %>
 		Current <%= @account.bs_category.name %>
 	<% else %>
 		Non-Current <%= @account.bs_category.name %>
