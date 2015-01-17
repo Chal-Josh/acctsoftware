@@ -13,6 +13,7 @@ class SubAccountsController < ApplicationController
   # GET /sub_accounts/1
   # GET /sub_accounts/1.json
   def show
+    @transaction_items = TransactionItem.all
     @sub_account = SubAccount.find(params[:id])
     @transaction = Transaction.new
     2.times do
