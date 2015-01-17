@@ -19,6 +19,12 @@ class Account < ActiveRecord::Base
       + (account.transaction_items.where(:debit => false, :transaction_id => transactions).sum("amount") * account.bs_category.credit_impact)
   end
   
+  def account_point_balance(account, month, year)  
+      transactions = account.transactions.point_transactions(month, year)
+      (account.transaction_items.where(:debit => true, :transaction_id => transactions).sum("amount") * account.bs_category.debit_impact) \
+      + (account.transaction_items.where(:debit => false, :transaction_id => transactions).sum("amount") * account.bs_category.credit_impact)
+  end
+  
   def account_current_month_projection(account, month, year)
       account.projections.where(:month => month, :year => year).sum("amount")
   end  

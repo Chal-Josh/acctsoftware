@@ -19,6 +19,12 @@ class BsCategory < ActiveRecord::Base
       + (bs_category.transaction_items.where(:debit => false, :transaction_id => transactions).sum("amount") * bs_category.credit_impact)
   end  
   
+  def bs_category_point_balance(bs_category, month, year)  
+      transactions = bs_category.transactions.point_transactions(month, year)
+      (bs_category.transaction_items.where(:debit => true, :transaction_id => transactions).sum("amount") * bs_category.debit_impact) \
+      + (bs_category.transaction_items.where(:debit => false, :transaction_id => transactions).sum("amount") * bs_category.credit_impact)
+  end
+  
   def bs_category_current_month_projection(bs_category, month, year)
       bs_category.projections.where(:month => month, :year => year).sum("amount")
   end  

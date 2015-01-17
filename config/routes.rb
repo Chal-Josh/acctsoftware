@@ -12,6 +12,7 @@ Acctsoftware::Application.routes.draw do
   
   get '/management/budget'
   get '/management/income_statement'
+  get '/management/balance_sheet'
 
 
   # The priority is based upon order of creation:
