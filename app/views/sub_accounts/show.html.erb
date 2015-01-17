@@ -1,21 +1,3 @@
-<table>
-	<tr>
-		<th>Item</th>
-		<th>Memo</th>
-	</tr>
-	<% @sub_account.transaction_items.each do |item| %>
-		<tr>
-			<td><%= item.id %></td> 
-			<td><%= item.transaction.memo %></td>
-		</tr>
-	<% end %>
-</table>
-
-
-
-
-
-
 <div class="row-fluid">
 	<div class="span6">
 		<h2><%= @sub_account.name %> | <%= @sub_account.account.name %></h2>
