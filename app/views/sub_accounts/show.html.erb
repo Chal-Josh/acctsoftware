@@ -39,7 +39,11 @@
 					<% else %>
 						<% value_multiplier = transaction_item.sub_account.account.bs_category.credit_impact %>
 					<% end %>
-					<% transaction_value = 1 * value_multiplier %>
+					<% if transaction_item.amount = "" %>	
+						<% transaction_value = 0 %>
+					<% else %>	
+							<% transaction_value = transaction_item.amount * value_multiplier %>
+					<% end %>
 					
 					
 					<tr data-provides="rowlink">
