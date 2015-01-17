@@ -1,3 +1,17 @@
+<table>
+	<tr>Item</tr>
+	<tr>Memo</tr>
+	<% @transaction_items.each do |item| %>
+		<td><%= item.id %></td> 
+		<td><%= item.transaction.memo %></td>
+	<% end %>
+</table>
+
+
+
+
+
+
 <div class="row-fluid">
 	<div class="span6">
 		<h2><%= @sub_account.name %> | <%= @sub_account.account.name %></h2>
