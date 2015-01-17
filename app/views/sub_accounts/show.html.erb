@@ -1,9 +1,13 @@
 <table>
-	<tr>Item</tr>
-	<tr>Memo</tr>
+	<tr>
+		<th>Item</th>
+		<th>Memo</th>
+	</tr>
 	<% @transaction_items.each do |item| %>
-		<td><%= item.id %></td> 
-		<td><%= item.transaction.memo %></td>
+		<tr>
+			<td><%= item.id %></td> 
+			<td><%= item.transaction.memo %></td>
+		</tr>
 	<% end %>
 </table>
 
