@@ -1,8 +1,9 @@
 <% @transaction_items.each do |item| %>
+	<p><%= item.id %> - 
 	<% if item.transaction == nil %>
-		<p>does not exist</p>
+		does not exist</p>
 	<% else %>
-		<p>does exist</p>
+		does exist</p>
 	<% end %>
 <% end %>
 
