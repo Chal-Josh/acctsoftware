@@ -1,7 +1,7 @@
 <div class="row-fluid">
 	<div class="span6">
 		<h2><%= @sub_account.name %> | <%= @sub_account.account.name %></h2>
-		<h4>Account Balance: <%= number_to_currency(@sub_account.sub_account_balance(@sub_account), :precision => 0, :unit => "$") %></h4>
+		<h4>Account Balance: <%= number_to_currency(@sub_account.sub_account_balance(@sub_account), :precision => 2, :unit => "$") %></h4>
 		
 	</div>
 	<div class="span2 pull-right" style="margin-top:15px;">
