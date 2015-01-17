@@ -1,3 +1,15 @@
+<% @transaction_items.each do |item| %>
+	<p><%= item.id %> - 
+	<% if item.transaction == nil %>
+		does not exist</p>
+	<% else %>
+		does exist</p>
+	<% end %>
+<% end %>
+
+
+
+
 <div class="row-fluid">
 	<div class="span6">
 		<h2><%= @sub_account.name %> | <%= @sub_account.account.name %></h2>
